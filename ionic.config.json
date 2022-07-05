@@ -1,0 +1,7 @@
+{
+  "name": "stalls",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
