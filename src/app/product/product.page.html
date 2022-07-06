@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products - {{society}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title (click) = "onClickTotal()">Total = {{total}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-list>
+    <div *ngFor="let prod of products; let i = index">
+      <ion-item>
+        <ion-label>{{prod.name}}</ion-label>
+        <ion-input slot="end" class="product-input" (ionChange)="onInputChange($event, i )">
+        </ion-input>
+      </ion-item>  
+    </div>
+  </ion-list>
+  <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
+    Place Order
+  </ion-button>
+</ion-content>
