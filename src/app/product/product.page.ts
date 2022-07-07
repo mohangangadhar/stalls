@@ -22,7 +22,6 @@ export class ProductPage implements OnInit {
   }
 
   ngOnInit() {
-
     this.products = [
       {
         name: 'Jamun',
@@ -45,7 +44,7 @@ export class ProductPage implements OnInit {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
-    this.qty[i] = this.products[i].price * event.detail.value;
+    this.qty[i] = Math.round(this.products[i].price * event.detail.value);
 
     this.qty.forEach(x => { sum += x; });
     this.total = sum;

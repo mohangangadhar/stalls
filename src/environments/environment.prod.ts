@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiKey: '', // <-- Enter your own key here!'
+  baseUrl: 'http://localhost:8080',
 };

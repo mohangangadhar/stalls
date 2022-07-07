@@ -11,13 +11,16 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list>
+  </ion-list>
+
   <div id="container">
     <ion-list>
       <ion-item>
         <ion-select placeholder="Select Society" (ionChange)="handleChange($event)">
-          <ion-select-option value="MHA">MHA</ion-select-option>
-          <ion-select-option value="MHJ">MHJ</ion-select-option>
-          <ion-select-option value="Sai Ram">Sai Ram</ion-select-option>
+          <div *ngFor="let society of societyList; let i = index">
+            <ion-select-option value="society.id">{{society.name}}</ion-select-option>
+          </div>
         </ion-select>
       </ion-item>
     </ion-list>
