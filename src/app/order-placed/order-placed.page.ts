@@ -14,6 +14,6 @@ export class OrderPlacedPage implements OnInit {
   }
 
   newOrder() {
-    this.navCtrl.navigateForward(['./add-name']);
+    this.navCtrl.navigateForward(['./product']);
   }
 }

@@ -18,9 +18,9 @@
     <ion-list>
       <ion-item>
         <ion-select placeholder="Select Society" (ionChange)="handleChange($event)">
-          <div *ngFor="let society of societyList; let i = index">
-            <ion-select-option value="society.id">{{society.name}}</ion-select-option>
-          </div>
+          <ion-select-option *ngFor="let society of societyList; let i = index" [value]="society.id">
+            {{society.name}}
+          </ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>

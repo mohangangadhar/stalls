@@ -23,4 +23,11 @@ export class SocietyService {
       `${environment.baseUrl}/society`
     );
   }
+
+  getProductList(page = 1): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/stall-product`
+    );
+  }
+
 }

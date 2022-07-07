@@ -15,13 +15,13 @@
       <div *ngFor="let prod of products; let i = index">
         <ion-item>
           <ion-label>{{prod.name}}</ion-label>
-          <ion-input slot="end" class="product-input" (ionChange)="onInputChange($event, i )">
+          <ion-input slot="end" class="product-input" color="primary" (ionChange)="onInputChange($event, i )">
           </ion-input>
         </ion-item>
       </div>
     </ion-list>
   </ion-card>
-  <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
-    Place Order
+  <ion-button size="medium" shape="block" class="btn" (click)="addUser()">
+    Add User
   </ion-button>
 </ion-content>

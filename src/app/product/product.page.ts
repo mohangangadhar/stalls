@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
+import { SocietyService } from 'src/app/services/society.service';
 
 @Component({
   selector: 'app-product',
@@ -12,8 +13,10 @@ export class ProductPage implements OnInit {
   private products = [];
   private qty = [];
   private society = '';
+  private currentPage = 1;
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private router: Router) {
+  constructor(private navCtrl: NavController, private route: ActivatedRoute,
+    private router: Router, private societyService: SocietyService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.society = this.router.getCurrentNavigation().extras.state.society;
@@ -22,20 +25,20 @@ export class ProductPage implements OnInit {
   }
 
   ngOnInit() {
-    this.products = [
-      {
-        name: 'Jamun',
-        price: 50
+    this.getProductList();
+  }
+
+  async getProductList(event?: any) {
+    this.societyService.getProductList(this.currentPage).subscribe(
+      (res) => {
+        console.log(res);
+        this.products.push(...res);
+        event?.target.complete();
       },
-      {
-        name: 'Banana',
-        price: 30
-      },
-      {
-        name: 'Mango',
-        price: 300
+      (err) => {
+        console.log(err);
       }
-    ];
+    );
   }
 
   onInputChange(event, i) {
@@ -44,7 +47,7 @@ export class ProductPage implements OnInit {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
-    this.qty[i] = Math.round(this.products[i].price * event.detail.value);
+    this.qty[i] = Math.round(this.products[i].cost * event.detail.value);
 
     this.qty.forEach(x => { sum += x; });
     this.total = sum;
@@ -57,7 +60,7 @@ export class ProductPage implements OnInit {
     }
   }
 
-  placeOrder(){
-    this.navCtrl.navigateForward(['./order-placed']);
+  addUser() {
+    this.navCtrl.navigateForward(['./add-name']);
   }
 }

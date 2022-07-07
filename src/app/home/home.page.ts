@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
 
   handleChange(e) {
     const navigationExtras: NavigationExtras = { state: { society: e.detail.value } };
-    this.navCtrl.navigateForward(['./add-name'], navigationExtras);
+    this.navCtrl.navigateForward(['./product'], navigationExtras);
   }
 
 }

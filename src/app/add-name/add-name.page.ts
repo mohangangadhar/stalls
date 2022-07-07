@@ -22,7 +22,7 @@ export class AddNamePage implements OnInit {
   ngOnInit() {
   }
 
-  addProducts(){
-    this.navCtrl.navigateForward(['./product']);
+  placeOrder(){
+    this.navCtrl.navigateForward(['./order-placed']);
   }
 }
