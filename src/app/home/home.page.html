@@ -15,14 +15,22 @@
   </ion-list>
 
   <div id="container">
-    <ion-list>
-      <ion-item>
-        <ion-select placeholder="Select Society" (ionChange)="handleChange($event)">
-          <ion-select-option *ngFor="let society of societyList; let i = index" [value]="society.id">
-            {{society.name}}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+    <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-select placeholder="Select Society" (ionChange)="onSocietyChange($event)">
+            <ion-select-option *ngFor="let society of societyList; let i = index" [value]="society.id">
+              {{society.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Name" (ionChange)="onNameChange($event)"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-button size="medium" shape="block" class="btn" (click)="submit()">
+      Products
+    </ion-button>
   </div>
 </ion-content>

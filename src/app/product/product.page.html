@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Products - {{society}}</ion-title>
+    <ion-title>Products - {{society.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,14 +14,31 @@
     <ion-list>
       <div *ngFor="let prod of products; let i = index">
         <ion-item>
-          <ion-label>{{prod.name}}</ion-label>
+          <ion-label>{{prod.name}} - {{prod.cost}}</ion-label>
           <ion-input slot="end" class="product-input" color="primary" (ionChange)="onInputChange($event, i )">
           </ion-input>
         </ion-item>
       </div>
     </ion-list>
   </ion-card>
-  <ion-button size="medium" shape="block" class="btn" (click)="addUser()">
-    Add User
-  </ion-button>
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Phone Number" (ionChange)="onPhoneChange($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Name" (ionChange)="onNameChange($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
+      </ion-item>
+      <ion-select placeholder="Select" (ionChange)="onPaymentChange($event)">
+        <ion-select-option value="QR">QR</ion-select-option>
+        <ion-select-option value="CASH">CASH</ion-select-option>
+      </ion-select>
+    </ion-list>
+    <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
+      Place Order
+    </ion-button>
+  </ion-card>
 </ion-content>

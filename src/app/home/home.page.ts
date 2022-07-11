@@ -11,8 +11,9 @@ import { SocietyService } from 'src/app/services/society.service';
 export class HomePage implements OnInit {
   societyList = [];
   currentPage = 1;
-
+  name = '';
   logs: string[] = [];
+  society = '';
 
   constructor(private navCtrl: NavController, private societyService: SocietyService) { }
 
@@ -33,13 +34,24 @@ export class HomePage implements OnInit {
     );
   }
 
+  onNameChange(event) {
+    this.name = event.detail.value;
+  }
 
   pushLog(msg) {
     this.logs.unshift(msg);
   }
 
-  handleChange(e) {
-    const navigationExtras: NavigationExtras = { state: { society: e.detail.value } };
+  onSocietyChange(event) {
+    if (isNaN(parseInt(event.detail.value, 10))) {
+      event.detail.value = 0;
+    }
+    const index = parseInt(event.detail.value, 10) - 1;
+    this.society = this.societyList[index];
+  }
+
+  submit() {
+    const navigationExtras: NavigationExtras = { state: { society: this.society, name: this.name } };
     this.navCtrl.navigateForward(['./product'], navigationExtras);
   }
 

@@ -30,4 +30,8 @@ export class SocietyService {
     );
   }
 
+  createOrder(page = 1, request: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/stall-order/order`, request );
+  }
+
 }
