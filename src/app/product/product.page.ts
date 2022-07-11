@@ -119,8 +119,9 @@ export class ProductPage implements OnInit {
   onInputChange(event, i) {
     const orderProduct = {
       total: 0,
-      name: '',
-      quantity: 0
+      productName: '',
+      quantity: 0,
+      id: 0
     };
     this.total = 0;
     let sum = 0;
@@ -136,10 +137,12 @@ export class ProductPage implements OnInit {
     }
     this.qty[i] = Math.round(this.products[i].cost * event.detail.value);
     order = this.products[i];
-    order.quantity = event.detail.value;
+
+    orderProduct.productName = order.name;
+    orderProduct.id = parseInt(order.id, 10);
     orderProduct.total = parseInt(order.cost, 10);
-    orderProduct.name = order.name;
     orderProduct.quantity = event.detail.value;
+
     this.stallOrderProductsDTO[i] = orderProduct;
     console.log(this.stallOrderProductsDTO);
     this.qty.forEach(x => { sum += x; });
