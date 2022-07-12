@@ -34,7 +34,7 @@ export class ProductPage implements OnInit {
     totalAmount: 0,
     adjustedAmount: 0,
     paymentMethod: '',
-    comment: ''
+    comments: ''
   };
 
   private user = {
@@ -102,7 +102,7 @@ export class ProductPage implements OnInit {
           totalAmount: 0,
           adjustedAmount: 0,
           paymentMethod: '',
-          comment: ''
+          comments: ''
         };
         this.stallManager = '';
         this.phone = '';
@@ -127,7 +127,7 @@ export class ProductPage implements OnInit {
 
   onCommentChange(event?: any) {
     if (isNaN(event.detail.value)) {
-      this.request.comment = event.detail.value;
+      this.request.comments = event.detail.value;
     }
   }
 
