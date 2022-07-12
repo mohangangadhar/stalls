@@ -12,11 +12,17 @@ export class ProductPage implements OnInit {
   private total = 0;
   private products = [];
   private qty = [];
+  private quantity= [];
   private society = '';
   private name = '';
   private currentPage = 1;
   private stallOrderProductsDTO = [];
   private paymentMethod = '';
+  private phone = '';
+  private email = '';
+  private stallManager = '';
+  private adjustedAmount = '';
+  private comment = '';
   private request = {
     stallUserDTO: {
       name: '',
@@ -34,7 +40,8 @@ export class ProductPage implements OnInit {
   private user = {
     phone: '',
     name: '',
-    email: ''
+    email: '',
+    society: ''
   };
 
   constructor(private navCtrl: NavController, private route: ActivatedRoute,
@@ -54,6 +61,8 @@ export class ProductPage implements OnInit {
   placeOrder() {
     console.log(this.user);
     console.log(this.stallOrderProductsDTO);
+
+    this.user.society = this.society;
 
     this.request.stallUserDTO.name = this.user.name;
     this.request.stallUserDTO.contact = this.user.phone;
@@ -82,6 +91,26 @@ export class ProductPage implements OnInit {
       (res) => {
         console.log('Order Created');
         console.log(res);
+        this.request = {
+          stallUserDTO: {
+            name: '',
+            contact: '',
+            email: ''
+          },
+          stallOrderProductsDTO: [],
+          orderPersonName: '',
+          totalAmount: 0,
+          adjustedAmount: 0,
+          paymentMethod: '',
+          comment: ''
+        };
+        this.stallManager = '';
+        this.phone = '';
+        this.email = '';
+        this.adjustedAmount = '';
+        this.comment = '';
+        this.quantity = [];
+        this.total = 0;
       },
       (err) => {
         console.log(err);
@@ -89,31 +118,31 @@ export class ProductPage implements OnInit {
     );
   }
 
-  onAdjustedAmount(event){
+  onAdjustedAmount(event?: any) {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
     this.request.adjustedAmount = event.detail.value;
   }
 
-  onCommentChange(event){
-    if(isNaN(event.detail.value)){
+  onCommentChange(event?: any) {
+    if (isNaN(event.detail.value)) {
       this.request.comment = event.detail.value;
     }
   }
 
-  onPhoneChange(event) {
+  onPhoneChange(event?: any) {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
     this.user.phone = event.detail.value;
   }
 
-  onNameChange(event) {
+  onNameChange(event?: any) {
     this.user.name = event.detail.value;
   }
 
-  onEmailChange(event) {
+  onEmailChange(event?: any) {
     this.user.email = event.detail.value;
   }
 
@@ -163,7 +192,7 @@ export class ProductPage implements OnInit {
     this.total = sum;
   }
 
-  onPaymentChange(event) {
+  onPaymentChange(event?: any) {
     this.paymentMethod = event.detail.value;
   }
 

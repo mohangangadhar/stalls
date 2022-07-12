@@ -15,7 +15,8 @@
       <div *ngFor="let prod of products; let i = index">
         <ion-item>
           <ion-label>{{prod.name}} - {{prod.cost}}</ion-label>
-          <ion-input slot="end" class="product-input" color="primary" (ionChange)="onInputChange($event, i )">
+          <ion-input slot="end" [(ngModel)]="quantity[i]" class="product-input" type="text" autocomplete="off"
+            autocorrect="off" (ionChange)="onInputChange($event, i )">
           </ion-input>
         </ion-item>
       </div>
@@ -24,24 +25,24 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-input type="text" placeholder="Phone Number" (ionChange)="onPhoneChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="phone" placeholder="Phone Number" (ionChange)="onPhoneChange($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Name" (ionChange)="onNameChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="stallManager" placeholder="Name" (ionChange)="onNameChange($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="email" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
       </ion-item>
       <ion-select placeholder="Payment Type" (ionChange)="onPaymentChange($event)">
         <ion-select-option value="QR">QR</ion-select-option>
         <ion-select-option value="CASH">CASH</ion-select-option>
       </ion-select>
       <ion-item>
-        <ion-input type="text" placeholder="Amount" (ionChange)="onAdjustedAmount($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="adjustedAmount" placeholder="Amount" (ionChange)="onAdjustedAmount($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Comment" (ionChange)="onCommentChange($event)"></ion-input>
-      </ion-item>            
+        <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" (ionChange)="onCommentChange($event)"></ion-input>
+      </ion-item>
     </ion-list>
     <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
       Place Order
