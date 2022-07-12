@@ -32,10 +32,16 @@
       <ion-item>
         <ion-input type="text" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
       </ion-item>
-      <ion-select placeholder="Select" (ionChange)="onPaymentChange($event)">
+      <ion-select placeholder="Payment Type" (ionChange)="onPaymentChange($event)">
         <ion-select-option value="QR">QR</ion-select-option>
         <ion-select-option value="CASH">CASH</ion-select-option>
       </ion-select>
+      <ion-item>
+        <ion-input type="text" placeholder="Amount" (ionChange)="onAdjustedAmount($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Comment" (ionChange)="onCommentChange($event)"></ion-input>
+      </ion-item>            
     </ion-list>
     <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
       Place Order

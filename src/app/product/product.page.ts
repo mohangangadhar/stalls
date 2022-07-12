@@ -26,8 +26,9 @@ export class ProductPage implements OnInit {
     stallOrderProductsDTO: [],
     orderPersonName: '',
     totalAmount: 0,
-    adjustedTotal: 0,
-    paymentMethod: ''
+    adjustedAmount: 0,
+    paymentMethod: '',
+    comment: ''
   };
 
   private user = {
@@ -86,6 +87,19 @@ export class ProductPage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  onAdjustedAmount(event){
+    if (isNaN(parseInt(event.detail.value, 10))) {
+      event.detail.value = 0;
+    }
+    this.request.adjustedAmount = event.detail.value;
+  }
+
+  onCommentChange(event){
+    if(isNaN(event.detail.value)){
+      this.request.comment = event.detail.value;
+    }
   }
 
   onPhoneChange(event) {
