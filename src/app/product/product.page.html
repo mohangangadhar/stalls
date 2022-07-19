@@ -25,6 +25,13 @@
   <ion-card>
     <ion-list>
       <ion-item>
+        <ion-select placeholder="Select Order Type" (ionChange)="onOrderTypeChange($event)">
+          <ion-select-option *ngFor="let orderType of orderTypeList; let i = index" [value]="i">
+            {{orderType}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>      
+      <ion-item>
         <ion-input type="text" [(ngModel)]="phone" placeholder="Phone Number" (ionChange)="onPhoneChange($event)"></ion-input>
       </ion-item>
       <ion-item>
@@ -32,6 +39,9 @@
       </ion-item>
       <ion-item>
         <ion-input type="text" [(ngModel)]="email" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="address" placeholder="Block/Flat NO" (ionChange)="onAddressChange($event)"></ion-input>
       </ion-item>
       <ion-select placeholder="Payment Type" (ionChange)="onPaymentChange($event)">
         <ion-select-option value="QR">QR</ion-select-option>

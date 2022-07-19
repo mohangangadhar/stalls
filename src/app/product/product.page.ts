@@ -12,7 +12,7 @@ export class ProductPage implements OnInit {
   private total = 0;
   private products = [];
   private qty = [];
-  private quantity= [];
+  private quantity = [];
   private society = '';
   private name = '';
   private currentPage = 1;
@@ -23,26 +23,33 @@ export class ProductPage implements OnInit {
   private stallManager = '';
   private adjustedAmount = '';
   private comment = '';
+  private address = '';
+  private orderType = '';
   private request = {
     stallUserDTO: {
       name: '',
       contact: '',
-      email: ''
+      email: '',
+      address: '',
     },
     stallOrderProductsDTO: [],
     orderPersonName: '',
     totalAmount: 0,
     adjustedAmount: 0,
     paymentMethod: '',
-    comments: ''
+    comments: '',
+    orderType:''
   };
 
   private user = {
     phone: '',
     name: '',
     email: '',
-    society: ''
+    society: '',
+    address: ''
   };
+
+  private orderTypeList = ['Order', 'Inbound','Outbound', 'Tasting', 'Wastage', 'Misc'];
 
   constructor(private navCtrl: NavController, private route: ActivatedRoute,
     private router: Router, private societyService: SocietyService) {
@@ -61,6 +68,20 @@ export class ProductPage implements OnInit {
   placeOrder() {
     console.log(this.user);
     console.log(this.stallOrderProductsDTO);
+    const stallOrderProducts = [];
+    const orderProduct = {
+      total: 0,
+      productName: '',
+      quantity: 0,
+      id: 0
+    };
+    this.stallOrderProductsDTO.forEach((order, index) => {
+      if (order == null) {
+        stallOrderProducts[index] = orderProduct;
+      } else {
+        stallOrderProducts[index] = order;
+      }
+    });
 
     this.user.society = this.society;
 
@@ -68,10 +89,11 @@ export class ProductPage implements OnInit {
     this.request.stallUserDTO.contact = this.user.phone;
     this.request.stallUserDTO.email = this.user.email;
 
-    this.request.stallOrderProductsDTO = this.stallOrderProductsDTO;
+    this.request.stallOrderProductsDTO = stallOrderProducts;
     this.request.orderPersonName = this.name;
     this.request.totalAmount = this.total;
     this.request.paymentMethod = this.paymentMethod;
+    this.request.orderType = this.orderType;
 
     console.log(this.request);
 
@@ -95,14 +117,16 @@ export class ProductPage implements OnInit {
           stallUserDTO: {
             name: '',
             contact: '',
-            email: ''
+            email: '',
+            address: ''
           },
           stallOrderProductsDTO: [],
           orderPersonName: '',
           totalAmount: 0,
           adjustedAmount: 0,
           paymentMethod: '',
-          comments: ''
+          comments: '',
+          orderType: ''
         };
         this.stallManager = '';
         this.phone = '';
@@ -111,6 +135,7 @@ export class ProductPage implements OnInit {
         this.comment = '';
         this.quantity = [];
         this.total = 0;
+        this.address = '';
       },
       (err) => {
         console.log(err);
@@ -146,6 +171,17 @@ export class ProductPage implements OnInit {
     this.user.email = event.detail.value;
   }
 
+  onOrderTypeChange(event?: any) {
+    if (isNaN(parseInt(event.detail.value, 10))) {
+      event.detail.value = 0;
+    }
+    const index = parseInt(event.detail.value, 10) - 1;
+    this.orderType = this.orderTypeList[index];
+  }
+
+  onAddressChange(event?: any) {
+    this.user.address = event.detail.value;
+  }
   async getProductList(event?: any) {
     this.societyService.getProductList(this.currentPage).subscribe(
       (res) => {
