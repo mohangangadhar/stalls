@@ -248,7 +248,7 @@ export class ProductPage implements OnInit {
 
     orderProduct.productName = order.name;
     orderProduct.id = parseInt(order.id, 10);
-    orderProduct.total = parseInt(order.cost, 10);
+    orderProduct.total = parseInt(order.cost, 10) * parseFloat(event.detail.value);
     orderProduct.quantity = event.detail.value;
 
     this.stallOrderProductsDTO[i] = orderProduct;
