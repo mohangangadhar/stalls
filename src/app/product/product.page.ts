@@ -24,7 +24,7 @@ export class ProductPage implements OnInit {
   private adjustedAmount = '';
   private comment = '';
   private address = '';
-  private orderType = '';
+  private orderType = { type: '', id: '' };
   private request = {
     stallUserDTO: {
       name: '',
@@ -38,7 +38,7 @@ export class ProductPage implements OnInit {
     adjustedAmount: 0,
     paymentMethod: '',
     comments: '',
-    orderType:''
+    orderType: ''
   };
 
   private user = {
@@ -49,7 +49,32 @@ export class ProductPage implements OnInit {
     address: ''
   };
 
-  private orderTypeList = ['Order', 'Inbound','Outbound', 'Tasting', 'Wastage', 'Misc'];
+  private orderTypeList = [
+    {
+      type: 'Order',
+      id: 1
+    },
+    {
+      type: 'Inbound',
+      id: 2
+    },
+    {
+      type: 'Outbound',
+      id: 3
+    },
+    {
+      type: 'Tasting',
+      id: 4
+    },
+    {
+      type: 'Wastage',
+      id: 5
+    },
+    {
+      type: 'Misc',
+      id: 6
+    }
+  ];
 
   constructor(private navCtrl: NavController, private route: ActivatedRoute,
     private router: Router, private societyService: SocietyService) {
@@ -83,6 +108,8 @@ export class ProductPage implements OnInit {
       }
     });
 
+    console.log(this.orderType);
+
     this.user.society = this.society;
 
     this.request.stallUserDTO.name = this.user.name;
@@ -93,7 +120,7 @@ export class ProductPage implements OnInit {
     this.request.orderPersonName = this.name;
     this.request.totalAmount = this.total;
     this.request.paymentMethod = this.paymentMethod;
-    this.request.orderType = this.orderType;
+    this.request.orderType = this.orderType.type;
 
     console.log(this.request);
 
@@ -172,11 +199,13 @@ export class ProductPage implements OnInit {
   }
 
   onOrderTypeChange(event?: any) {
-    if (isNaN(parseInt(event.detail.value, 10))) {
-      event.detail.value = 0;
-    }
-    const index = parseInt(event.detail.value, 10) - 1;
-    this.orderType = this.orderTypeList[index];
+    console.log(event.detail.value);
+    // if (isNaN(parseInt(event.detail.value, 10))) {
+    //   event.detail.value = 0;
+    // }
+    //    const index = parseInt(event.detail.value, 10) - 1;
+    this.orderType = event.detail.value;
+    console.log(this.orderType);
   }
 
   onAddressChange(event?: any) {
