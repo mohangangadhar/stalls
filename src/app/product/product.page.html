@@ -14,7 +14,7 @@
     <ion-list>
       <div *ngFor="let prod of products; let i = index">
         <ion-item>
-          <ion-label>{{prod.name}} - {{prod.cost}}</ion-label>
+          <ion-label class="ion-text-wrap">{{prod.name}} - {{prod.cost}}</ion-label>
           <ion-input slot="end" [(ngModel)]="quantity[i]" class="product-input" type="text" autocomplete="off"
             autocorrect="off" (ionChange)="onInputChange($event, i )">
           </ion-input>
@@ -22,7 +22,7 @@
       </div>
     </ion-list>
   </ion-card>
-  <ion-card>
+  <ion-card>  
     <ion-list>
       <ion-item>
         <ion-select (ionChange)="onOrderTypeChange($event)">
