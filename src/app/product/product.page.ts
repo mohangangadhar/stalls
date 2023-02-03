@@ -108,8 +108,6 @@ export class ProductPage implements OnInit {
       }
     });
 
-    console.log(this.orderType);
-
     this.user.society = this.society;
 
     this.request.stallUserDTO.name = this.user.name;
@@ -121,8 +119,6 @@ export class ProductPage implements OnInit {
     this.request.totalAmount = this.total;
     this.request.paymentMethod = this.paymentMethod;
     this.request.orderType = this.orderType.type;
-
-    console.log(this.request);
 
     this.createOrder(this.request);
 
@@ -199,13 +195,7 @@ export class ProductPage implements OnInit {
   }
 
   onOrderTypeChange(event?: any) {
-    console.log(event.detail.value);
-    // if (isNaN(parseInt(event.detail.value, 10))) {
-    //   event.detail.value = 0;
-    // }
-    //    const index = parseInt(event.detail.value, 10) - 1;
     this.orderType = event.detail.value;
-    console.log(this.orderType);
   }
 
   onAddressChange(event?: any) {
@@ -214,7 +204,6 @@ export class ProductPage implements OnInit {
   async getProductList(event?: any) {
     this.societyService.getProductList(this.currentPage).subscribe(
       (res) => {
-        console.log(res);
         this.products.push(...res);
         event?.target.complete();
       },
@@ -252,7 +241,6 @@ export class ProductPage implements OnInit {
     orderProduct.quantity = event.detail.value;
 
     this.stallOrderProductsDTO[i] = orderProduct;
-    console.log(this.stallOrderProductsDTO);
     this.qty.forEach(x => { sum += x; });
     this.total = sum;
   }

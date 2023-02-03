@@ -1,15 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Products - {{society.name}}</ion-title>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title (click)="onClickTotal()">Total = {{total}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title (click)="onClickTotal()">Total = {{total}}</ion-card-title>
-    </ion-card-header>
-  </ion-card>
   <ion-card>
     <ion-list>
       <div *ngFor="let prod of products; let i = index">
@@ -22,7 +21,7 @@
       </div>
     </ion-list>
   </ion-card>
-  <ion-card>  
+  <ion-card>
     <ion-list>
       <ion-item>
         <ion-select (ionChange)="onOrderTypeChange($event)">
@@ -30,28 +29,33 @@
             {{orderType.type}}
           </ion-select-option>
         </ion-select>
-      </ion-item>      
-      <ion-item>
-        <ion-input type="text" [(ngModel)]="phone" placeholder="Phone Number" (ionChange)="onPhoneChange($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="stallManager" placeholder="Name" (ionChange)="onNameChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="phone" placeholder="Phone Number"
+          (ionChange)="onPhoneChange($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="stallManager" placeholder="Name"
+          (ionChange)="onNameChange($event)"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="text" [(ngModel)]="email" placeholder="Email" (ionChange)="onEmailChange($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="address" placeholder="Block/Flat NO" (ionChange)="onAddressChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="address" placeholder="Block/Flat NO"
+          (ionChange)="onAddressChange($event)"></ion-input>
       </ion-item>
       <ion-select placeholder="Payment Type" (ionChange)="onPaymentChange($event)">
         <ion-select-option value="QR">QR</ion-select-option>
         <ion-select-option value="CASH">CASH</ion-select-option>
       </ion-select>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="adjustedAmount" placeholder="Amount" (ionChange)="onAdjustedAmount($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="adjustedAmount" placeholder="Amount"
+          (ionChange)="onAdjustedAmount($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" (ionChange)="onCommentChange($event)"></ion-input>
+        <ion-input type="text" [(ngModel)]="comment" placeholder="Comment"
+          (ionChange)="onCommentChange($event)"></ion-input>
       </ion-item>
     </ion-list>
     <ion-button size="medium" shape="block" class="btn" (click)="placeOrder()">
