@@ -91,8 +91,6 @@ export class ProductPage implements OnInit {
   }
 
   placeOrder() {
-    console.log(this.user);
-    console.log(this.stallOrderProductsDTO);
     const stallOrderProducts = [];
     const orderProduct = {
       total: 0,
@@ -117,8 +115,8 @@ export class ProductPage implements OnInit {
     this.request.stallOrderProductsDTO = stallOrderProducts;
     this.request.orderPersonName = this.name;
     this.request.totalAmount = this.total;
-    this.request.paymentMethod = this.paymentMethod;
-    this.request.orderType = this.orderType.type;
+    this.request.paymentMethod = this.paymentMethod === '' || this.paymentMethod == null ? 'QR' : this.paymentMethod;
+    this.request.orderType = this.orderType.type === '' || this.orderType.type == null ? 'Order' : this.orderType.type;
 
     this.createOrder(this.request);
 

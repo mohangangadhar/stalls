@@ -23,12 +23,17 @@
   </ion-card>
   <ion-card>
     <ion-list>
-      <ion-item>
-        <ion-select (ionChange)="onOrderTypeChange($event)">
+      <ion-item>        
+        <ion-select (ionChange)="onOrderTypeChange($event)" placeholder="Choose Order Type">
           <ion-select-option *ngFor="let orderType of orderTypeList; let i = index" [value]="orderType">
             {{orderType.type}}
           </ion-select-option>
         </ion-select>
+        <!-- <ion-select (ionChange)="onOrderTypeChange($event)" placeholder="Choose Order Type">
+          <ion-select-option value="apples">Apples</ion-select-option>
+          <ion-select-option value="oranges">Oranges</ion-select-option>
+          <ion-select-option value="bananas">Bananas</ion-select-option>    
+        </ion-select> -->
       </ion-item>
       <ion-item>
         <ion-input type="text" [(ngModel)]="phone" placeholder="Phone Number"
@@ -45,10 +50,12 @@
         <ion-input type="text" [(ngModel)]="address" placeholder="Block/Flat NO"
           (ionChange)="onAddressChange($event)"></ion-input>
       </ion-item>
-      <ion-select placeholder="Payment Type" (ionChange)="onPaymentChange($event)">
-        <ion-select-option value="QR">QR</ion-select-option>
-        <ion-select-option value="CASH">CASH</ion-select-option>
-      </ion-select>
+      <ion-item>
+        <ion-select placeholder="Choose Payment Type" (ionChange)="onPaymentChange($event)">
+          <ion-select-option value="QR">QR</ion-select-option>
+          <ion-select-option value="CASH">CASH</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-input type="text" [(ngModel)]="adjustedAmount" placeholder="Amount"
           (ionChange)="onAdjustedAmount($event)"></ion-input>
