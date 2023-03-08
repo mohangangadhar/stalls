@@ -55,24 +55,28 @@ export class ProductPage implements OnInit {
       id: 1
     },
     {
-      type: 'Inbound',
+      type: 'Online Order',
       id: 2
     },
     {
-      type: 'Outbound',
+      type: 'Inbound',
       id: 3
     },
     {
-      type: 'Tasting',
+      type: 'Outbound',
       id: 4
     },
     {
-      type: 'Wastage',
+      type: 'Tasting',
       id: 5
     },
     {
-      type: 'Misc',
+      type: 'Wastage',
       id: 6
+    },
+    {
+      type: 'Misc',
+      id: 7
     }
   ];
 
