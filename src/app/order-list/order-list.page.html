@@ -9,12 +9,16 @@
     <ion-list>
       <ion-item>
         <ion-label class="ion-text-wrap">Order No</ion-label>
+        <ion-label class="ion-text-wrap">Name</ion-label>
+        <ion-label class="ion-text-wrap">Date</ion-label>
         <ion-label class="ion-text-wrap">Total</ion-label>
       </ion-item>
 
       <div *ngFor="let order of orderList; let i = index">
         <ion-item>
           <ion-label class="ion-text-wrap">{{order.id}}</ion-label>
+          <ion-label class="ion-text-wrap">{{order.stallUser.name}}</ion-label>
+          <ion-label class="ion-text-wrap">{{dateVal(order.createdDate,0,10)}}</ion-label>
           <ion-label class="ion-text-wrap">Rs {{order.total}}/-</ion-label>
 
           <!-- <ion-input slot="end" [(ngModel)]="quantity[i]" class="product-input" type="text" autocomplete="off"

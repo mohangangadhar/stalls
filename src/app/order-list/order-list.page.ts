@@ -16,6 +16,9 @@ export class OrderListPage implements OnInit {
     this.loadOrders();
   }
 
+  dateVal(date: string){
+    return date.substring(0,10);
+  }
   async loadOrders(event?: any) {
     this.societyService.getOrderList().subscribe(
       (res) => {
