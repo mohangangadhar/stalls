@@ -34,4 +34,11 @@ export class SocietyService {
     return this.http.post<any>(`${environment.baseUrl}/stall-order/order`, request );
   }
 
+
+  getOrderList(page = 1): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/stall-order/page-query?page=0&size=20`
+    );
+  }
+
 }

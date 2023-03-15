@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>order-list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <div *ngFor="let order of orderList; let i = index">
+        <ion-item>
+          <ion-label class="ion-text-wrap">{{order.id}}</ion-label>
+          <ion-label class="ion-text-wrap">{{order.total}}</ion-label>
+
+          <!-- <ion-input slot="end" [(ngModel)]="quantity[i]" class="product-input" type="text" autocomplete="off"
+            autocorrect="off" (ionChange)="onInputChange($event, i )">
+          </ion-input> -->
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-card>
+</ion-content>

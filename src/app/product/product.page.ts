@@ -24,6 +24,7 @@ export class ProductPage implements OnInit {
   private adjustedAmount = '';
   private comment = '';
   private address = '';
+  private societyId = 0;
   private orderType = { type: '', id: '' };
   private request = {
     stallUserDTO: {
@@ -38,7 +39,8 @@ export class ProductPage implements OnInit {
     adjustedAmount: 0,
     paymentMethod: '',
     comments: '',
-    orderType: ''
+    orderType: '',
+    societyId: 0
   };
 
   private user = {
@@ -86,6 +88,8 @@ export class ProductPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.society = this.router.getCurrentNavigation().extras.state.society;
         this.name = this.router.getCurrentNavigation().extras.state.name;
+        this.societyId = this.router.getCurrentNavigation().extras.state.societyId;
+
       }
     });
   }
@@ -119,6 +123,7 @@ export class ProductPage implements OnInit {
     this.request.stallOrderProductsDTO = stallOrderProducts;
     this.request.orderPersonName = this.name;
     this.request.totalAmount = this.total;
+    this.request.societyId = this.societyId;
     this.request.paymentMethod = this.paymentMethod === '' || this.paymentMethod == null ? 'QR' : this.paymentMethod;
     this.request.orderType = this.orderType.type === '' || this.orderType.type == null ? 'Order' : this.orderType.type;
 
@@ -136,8 +141,6 @@ export class ProductPage implements OnInit {
   async createOrder(request?: any) {
     this.societyService.createOrder(this.currentPage, request).subscribe(
       (res) => {
-        console.log('Order Created');
-        console.log(res);
         this.request = {
           stallUserDTO: {
             name: '',
@@ -151,7 +154,8 @@ export class ProductPage implements OnInit {
           adjustedAmount: 0,
           paymentMethod: '',
           comments: '',
-          orderType: ''
+          orderType: '',
+          societyId: 0
         };
         this.stallManager = '';
         this.phone = '';
@@ -262,9 +266,14 @@ export class ProductPage implements OnInit {
     {
       state: {
         society: this.society,
+        societyId: this.societyId,
         orderProducts: this.stallOrderProductsDTO
       }
     };
     this.navCtrl.navigateForward(['./add-name'], navigationExtras);
+  }
+
+  prevOrders(){
+    this.navCtrl.navigateForward(['./order-list']);
   }
 }

@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'order-placed',
     loadChildren: () => import('./order-placed/order-placed.module').then( m => m.OrderPlacedPageModule)
   },
+  {
+    path: 'order-list',
+    loadChildren: () => import('./order-list/order-list.module').then( m => m.OrderListPageModule)
+  },
 ];
 
 @NgModule({

@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   name = '';
   logs: string[] = [];
   society = '';
+  societyId = 0;
 
   constructor(private navCtrl: NavController, private societyService: SocietyService) { }
 
@@ -24,7 +25,6 @@ export class HomePage implements OnInit {
   async loadSocietyList(event?: any) {
     this.societyService.getAllSocietyList(this.currentPage).subscribe(
       (res) => {
-        console.log(res);
         this.societyList.push(...res);
         event?.target.complete();
       },
@@ -46,12 +46,13 @@ export class HomePage implements OnInit {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
+    this.societyId = parseInt(event.detail.value, 10);
     const index = parseInt(event.detail.value, 10) - 1;
     this.society = this.societyList[index];
   }
 
   submit() {
-    const navigationExtras: NavigationExtras = { state: { society: this.society, name: this.name } };
+    const navigationExtras: NavigationExtras = { state: { society: this.society, name: this.name, societyId: this.societyId } };
     this.navCtrl.navigateForward(['./product'], navigationExtras);
   }
 
