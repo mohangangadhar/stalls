@@ -13,8 +13,13 @@ export class HomePage implements OnInit {
   currentPage = 1;
   name = '';
   logs: string[] = [];
-  society = '';
+  society = {
+    id: 0,
+    name: '',
+    city:''
+  };
   societyId = 0;
+  data = {};
 
   constructor(private navCtrl: NavController, private societyService: SocietyService) { }
 
@@ -46,13 +51,13 @@ export class HomePage implements OnInit {
     if (isNaN(parseInt(event.detail.value, 10))) {
       event.detail.value = 0;
     }
-    this.societyId = parseInt(event.detail.value, 10);
     const index = parseInt(event.detail.value, 10) - 1;
     this.society = this.societyList[index];
   }
 
   submit() {
-    const navigationExtras: NavigationExtras = { state: { society: this.society, name: this.name, societyId: this.societyId } };
+    this.data = { society: this.society.name, name: this.name, societyId: this.society.id };
+    const navigationExtras: NavigationExtras = { queryParams: { data: JSON.stringify(this.data) } };
     this.navCtrl.navigateForward(['./product'], navigationExtras);
   }
 

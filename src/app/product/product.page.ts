@@ -9,6 +9,13 @@ import { SocietyService } from 'src/app/services/society.service';
   styleUrls: ['./product.page.scss'],
 })
 export class ProductPage implements OnInit {
+
+  data = {
+    "society": "",
+    "name": "",
+    "societyId": 0
+  };
+
   private total = 0;
   private products = [];
   private qty = [];
@@ -51,6 +58,7 @@ export class ProductPage implements OnInit {
     address: ''
   };
 
+
   private orderTypeList = [
     {
       type: 'Order',
@@ -85,11 +93,11 @@ export class ProductPage implements OnInit {
   constructor(private navCtrl: NavController, private route: ActivatedRoute,
     private router: Router, private societyService: SocietyService) {
     this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.society = this.router.getCurrentNavigation().extras.state.society;
-        this.name = this.router.getCurrentNavigation().extras.state.name;
-        this.societyId = this.router.getCurrentNavigation().extras.state.societyId;
-
+      if (params && params.data) {
+        this.data = JSON.parse(params.data);
+        this.society = this.data.society;
+        this.name = this.data.name;
+        this.societyId = this.data.societyId;
       }
     });
   }
@@ -273,7 +281,7 @@ export class ProductPage implements OnInit {
     this.navCtrl.navigateForward(['./add-name'], navigationExtras);
   }
 
-  prevOrders(){
+  prevOrders() {
     this.navCtrl.navigateForward(['./order-list']);
   }
 }
