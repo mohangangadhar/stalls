@@ -41,4 +41,11 @@ export class SocietyService {
     );
   }
 
+
+  getIncentive(): Observable<number> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/stall-order/incentive/amount`
+    );
+  }
+
 }

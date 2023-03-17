@@ -61,4 +61,8 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward(['./product'], navigationExtras);
   }
 
+  incentive(){
+    this.navCtrl.navigateForward(['./incentive']);
+  }
+
 }

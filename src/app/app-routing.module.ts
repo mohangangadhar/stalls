@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'order-list',
     loadChildren: () => import('./order-list/order-list.module').then( m => m.OrderListPageModule)
   },
+  {
+    path: 'incentive',
+    loadChildren: () => import('./incentive/incentive.module').then( m => m.IncentivePageModule)
+  },
 ];
 
 @NgModule({
